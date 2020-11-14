@@ -391,7 +391,9 @@ public class Arena {
     }
 
     public void kickAllPlayers() {
-        playersInArena.removeIf(info -> callPlayerLeaveArenaEvent(info.asPlayer()));
+        if(!playersInArena.removeIf(info -> callPlayerLeaveArenaEvent(info.asPlayer()))) {
+            kickAllPlayers();
+        }
     }
 
     public void delete() {
