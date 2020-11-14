@@ -148,12 +148,12 @@ public class SongManager {
             }
             try {
                 this.votedSong.play(blockParty, this.arena);
+                this.arena.getPlayersInArena().forEach(playerInfo -> SONG_PLAYING.message(PREFIX,  playerInfo.asPlayer(), "%SONG%", this.votedSong.getName()));
             } catch (FileNotFoundException e) {
                 BlockParty.getInstance().getPlugin().getLogger().log(Level.SEVERE, "Song " + this.votedSong.getName() + " not available. Please check your arena config!");
                 this.votedSong = null;
             }
 
-            SONG_PLAYING.broadcast(PREFIX, "%SONG%", this.votedSong.getName());
             this.resetVotes();
         }
     }
